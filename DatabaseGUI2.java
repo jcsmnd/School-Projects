@@ -28,7 +28,6 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
         showFocusReports();
     }
     
-    
     public Connection getConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -42,12 +41,12 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
         return null;
     }
     
-    private Connection con = getConnection();
-    
-    
     public ArrayList<Student> studentList(){ //creates an ArrayList based on the student table
         ArrayList<Student> list = new ArrayList<>();
         try{
+            //Class.forName("com.mysql.jdbc.Driver");
+            //Connection con = DriverManager.getConnection("jdbc:mysql://triton.towson.edu:3360/wlent1db", "wlent1", "Cosc*8pcy");
+            Connection con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Student");
         
@@ -66,6 +65,9 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
     public ArrayList<Teacher> teacherList(){ //creates an ArrayList based on the teacher table
         ArrayList<Teacher> list = new ArrayList<>();
         try{
+            //Class.forName("com.mysql.jdbc.Driver");
+            //Connection con = DriverManager.getConnection("jdbc:mysql://triton.towson.edu:3360/wlent1db", "wlent1", "Cosc*8pcy");
+            Connection con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Teacher");
         
@@ -84,6 +86,8 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
     public ArrayList<FocusReport> FocusReportList(){ //creates an ArrayList based on the FocusReport table
         ArrayList<FocusReport> list = new ArrayList<>();
         try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://triton.towson.edu:3360/wlent1db", "wlent1", "Cosc*8pcy");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Focus_Report");
         
@@ -157,23 +161,23 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        studentsPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         studentIDTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         studentIDSearchButton = new javax.swing.JButton();
         studentResetButton = new javax.swing.JButton();
-        teachersPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         teacherIDTextField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         teacherIDSearchButton = new javax.swing.JButton();
         teacherResetButton = new javax.swing.JButton();
-        focusReportsPanel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        studentIDTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -181,15 +185,16 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         focusReportSearchButton = new javax.swing.JButton();
-        communityPanel = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        homeroomPanel = new javax.swing.JPanel();
-        medicationPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Student ID");
+
+        studentIDTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentIDTextFieldActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,11 +220,11 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout studentsPanelLayout = new javax.swing.GroupLayout(studentsPanel);
-        studentsPanel.setLayout(studentsPanelLayout);
-        studentsPanelLayout.setHorizontalGroup(
-            studentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(studentsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,15 +234,15 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(studentResetButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(studentsPanelLayout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 481, Short.MAX_VALUE))
         );
-        studentsPanelLayout.setVerticalGroup(
-            studentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(studentsPanelLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(studentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(studentIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(studentIDSearchButton)
@@ -247,7 +252,7 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Students", studentsPanel);
+        jTabbedPane1.addTab("Students", jPanel1);
 
         jLabel2.setText("Teacher ID");
 
@@ -275,14 +280,14 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout teachersPanelLayout = new javax.swing.GroupLayout(teachersPanel);
-        teachersPanel.setLayout(teachersPanelLayout);
-        teachersPanelLayout.setHorizontalGroup(
-            teachersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(teachersPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(teachersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(teachersPanelLayout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(teacherIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,11 +298,11 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(469, Short.MAX_VALUE))
         );
-        teachersPanelLayout.setVerticalGroup(
-            teachersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(teachersPanelLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(teachersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(teacherIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(teacherIDSearchButton)
@@ -307,13 +312,31 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Teachers", teachersPanel);
+        jTabbedPane1.addTab("Teachers", jPanel2);
 
         jLabel3.setText("Student ID");
 
+        studentIDTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentIDTextField2ActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Time In");
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Date");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -332,18 +355,18 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout focusReportsPanelLayout = new javax.swing.GroupLayout(focusReportsPanel);
-        focusReportsPanel.setLayout(focusReportsPanelLayout);
-        focusReportsPanelLayout.setHorizontalGroup(
-            focusReportsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(focusReportsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(focusReportsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addGroup(focusReportsPanelLayout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(studentIDTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -357,13 +380,13 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
                         .addGap(0, 408, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        focusReportsPanelLayout.setVerticalGroup(
-            focusReportsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(focusReportsPanelLayout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(focusReportsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentIDTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
@@ -374,62 +397,7 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
                 .addContainerGap(152, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Focus Reports", focusReportsPanel);
-
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Community Name", "Leader Name", "# of Focus Rooms"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable4);
-
-        javax.swing.GroupLayout communityPanelLayout = new javax.swing.GroupLayout(communityPanel);
-        communityPanel.setLayout(communityPanelLayout);
-        communityPanelLayout.setHorizontalGroup(
-            communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(communityPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(471, Short.MAX_VALUE))
-        );
-        communityPanelLayout.setVerticalGroup(
-            communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(communityPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Community", communityPanel);
-
-        javax.swing.GroupLayout homeroomPanelLayout = new javax.swing.GroupLayout(homeroomPanel);
-        homeroomPanel.setLayout(homeroomPanelLayout);
-        homeroomPanelLayout.setHorizontalGroup(
-            homeroomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 933, Short.MAX_VALUE)
-        );
-        homeroomPanelLayout.setVerticalGroup(
-            homeroomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Homeroom", homeroomPanel);
-
-        javax.swing.GroupLayout medicationPanelLayout = new javax.swing.GroupLayout(medicationPanel);
-        medicationPanel.setLayout(medicationPanelLayout);
-        medicationPanelLayout.setHorizontalGroup(
-            medicationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 933, Short.MAX_VALUE)
-        );
-        medicationPanelLayout.setVerticalGroup(
-            medicationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Medication", medicationPanel);
+        jTabbedPane1.addTab("Focus Reports", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -455,8 +423,10 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
         ArrayList<Student> list = new ArrayList<Student>();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://triton.towson.edu:3360/wlent1db", "wlent1", "Cosc*8pcy");
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Student WHERE S_ID LIKE '" + studentIDTextField.getText() + "%'");
+            ResultSet rs = st.executeQuery("SELECT * FROM Student WHERE S_ID LIKE '" + studentIDTextField.getText()+ "%'");
         
             while(rs.next()){
                 Student student = new Student(rs.getString("S_ID"), rs.getString("F_Name"), rs.getString("L_Name"), rs.getString("DOB"), rs.getString("Room_No"));
@@ -483,9 +453,11 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
         ArrayList<Teacher> list = new ArrayList<Teacher>();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://triton.towson.edu:3360/wlent1db", "wlent1", "Cosc*8pcy");
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Teacher WHERE T_ID LIKE '" + teacherIDTextField.getText() + "%'");
-            // Hello Lola was here
+            ResultSet rs = st.executeQuery("SELECT * FROM Teacher WHERE T_ID = " + teacherIDTextField.getText());
+        
             while(rs.next()){
                 Teacher teacher = new Teacher(rs.getString("T_ID"), rs.getString("F_Name"), rs.getString("L_Name"), rs.getString("Subject"));
                 list.add(teacher);
@@ -517,34 +489,58 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
         model.setRowCount(0);
         showTeachers();
     }//GEN-LAST:event_teacherResetButtonActionPerformed
-
+    //modified by Kim 11/20/2017
     private void focusReportSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_focusReportSearchButtonActionPerformed
         ArrayList<FocusReport> list = new ArrayList<FocusReport>();
         DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
-        /*try{
+        
+        
+        try{
             Connection con = getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Teacher WHERE T_ID = " + teacherIDTextField.getText());
+            ResultSet rs = st.executeQuery("SELECT * FROM Focus_Report WHERE S_ID LIKE '" + studentIDTextField2.getText()+ "%'");
         
             while(rs.next()){
-                Teacher teacher = new Teacher(rs.getString("T_ID"), rs.getString("F_Name"), rs.getString("L_Name"), rs.getString("Subject"));
-                list.add(teacher);
+                FocusReport focusreport = new FocusReport(rs.getString("S_ID"), rs.getString("T_ID"), rs.getString("Time_In"), rs.getString("Time_Out"), rs.getString("Date"), rs.getString("Teacher_Description"), rs.getString("Student_Response"), rs.getString("Type"), rs.getString("Comm_Leader_Debrief"));
+                list.add(focusreport);
             }
         }
-        
+         
         catch(Exception e){
             System.out.println("Error");
         }
         model.setRowCount(0);
-        Object row[] = new Object[5];
+        Object row[] = new Object[9];
         for(int i = 0; i < list.size(); i++){
-            row[0] = list.get(i).getT_ID();
-            row[1] = list.get(i).getF_Name();
-            row[2] = list.get(i).getL_Name();
-            row[3] = list.get(i).getSubject();
+            row[0] = list.get(i).getS_ID();
+            row[1] = list.get(i).getT_ID();
+            row[2] = list.get(i).getTime_In();
+            row[3] = list.get(i).getTime_Out();
+            row[4] = list.get(i).getDate();
+            row[5] = list.get(i).getTeacher_Description();
+            row[6] = list.get(i).getStudent_Response();
+            row[7] = list.get(i).getType();
+            row[8] = list.get(i).getComm_Leader_Debrief();
             model.addRow(row);
-        }*/
+        }
+        
     }//GEN-LAST:event_focusReportSearchButtonActionPerformed
+
+    private void studentIDTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentIDTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentIDTextField2ActionPerformed
+
+    private void studentIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentIDTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentIDTextFieldActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -582,35 +578,30 @@ public class DatabaseGUI2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel communityPanel;
     private javax.swing.JButton focusReportSearchButton;
-    private javax.swing.JPanel focusReportsPanel;
-    private javax.swing.JPanel homeroomPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JPanel medicationPanel;
     private javax.swing.JButton studentIDSearchButton;
     private javax.swing.JTextField studentIDTextField;
+    private javax.swing.JTextField studentIDTextField2;
     private javax.swing.JButton studentResetButton;
-    private javax.swing.JPanel studentsPanel;
     private javax.swing.JButton teacherIDSearchButton;
     private javax.swing.JTextField teacherIDTextField;
     private javax.swing.JButton teacherResetButton;
-    private javax.swing.JPanel teachersPanel;
     // End of variables declaration//GEN-END:variables
 }
